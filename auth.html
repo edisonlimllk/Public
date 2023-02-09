@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/authstyle.css" />
+    <link rel="stylesheet" href="./css/textstyles.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  </head>
+  <body onload="getSchools()">
+    <section class="container">
+      <div class="bg-image"></div>
+      <div class="content">
+        <section class="forms-section">
+          <h1 class="section-title" style="font-size:300%;">StudyBuddy</h1>
+          <div class="forms">
+            <div id="signInWrapper" class="form-wrapper is-active">
+              <button type="button" id="signInSwitch"  class="switcher switcher-login" onclick="switchForm('signin')">
+                Login
+                <span class="underline"></span>
+              </button>
+              
+              <form class="form form-login">
+                <fieldset>
+                  <div class="multi-button login">
+                    <button type="menu" class="button admin" id="signInAdmin" onclick="selectUserType('signInAdmin', event)"><span>Admin</span></button>
+                    <button type="menu" class="button student" id="signInStudent" onclick="selectUserType('signInStudent', event)"><span>Student</span></button>
+                    <button type="menu" class="button teacher" id="signInTeacher" onclick="selectUserType('signInTeacher', event)"><span>Teacher</span></button>
+                  </div>
+                  <legend>
+                    Please, enter your email and password for login.
+                  </legend>
+                  <div class="input-block">
+                    <label for="login-email">E-mail</label>
+                    <input id="login-email" type="email" required value="lau_zhao_hong@tp.edu.sg" />
+                  </div>
+                  <div class="input-block">
+                    <label for="login-password">Password</label>
+                    <input id="login-password" type="password" required value="mrlau"/>
+                  </div>
+                  
+                </fieldset>
+                <button onclick="auth()" type="button" id="signInButton" class="custom-btn authbtns">Login</button>
+                <a style="float: right;" href="./send_email_page.html">Forgot Password?</a>
+              </form>
+            </div>
+            <div id="signUpWrapper" class="form-wrapper">
+              <button type="button" id="signUpSwitch" class="switcher switcher-signup" onclick="switchForm('signup')">
+                Sign Up
+                <span class="underline"></span>
+              </button>
+              <form class="form form-signup">
+                <fieldset>
+                  <div class="multi-button signup">
+                    <button type="menu" class="button admin" id="signUpAdmin" onclick="selectUserType('signUpAdmin', event)"><span>Admin</span></button>
+                    <button type="menu" class="button student" id="signUpStudent" onclick="selectUserType('signUpStudent', event)"><span>Student</span></button>
+                    <button type="menu" class="button teacher" id="signUpTeacher" onclick="selectUserType('signUpTeacher', event)"><span>Teacher</span></button>
+                  </div>
+                  <legend>
+                    Please, enter your email, password and password confirmation
+                    for sign up.
+                  </legend>
+                  <input class="dark-light" checked type="checkbox" style="display: none;" id="dark-light" name="dark-light"/>
+                  <label for="dark-light" style="display: none;"></label>
+              
+                  <div class="sec-center" id="signup-sec-center"> 	
+                    <input class="dropdown" type="checkbox" id="dropdown" name="dropdown" onclick="dropDownClicked(event)"/>
+                    <label class="for-dropdown" id="for-dropdown" for="dropdown">School</label>
+                    <div class="section-dropdown" id="schoolDropDown"> 
+                      <a href="#" onclick="selectSchool('Temasek Polytechnic')">Temasek Polytechnic <i class="uil uil-arrow-right"></i></a>
+                    </div>
+                  </div>
+                  <div class="input-block">
+                    <label for="signup-email">E-mail</label>
+                    <input id="signup-email" type="email"  value="testemail@email.com"/>
+                  </div>
+                  <div class="input-block" id="signupusernamediv">
+                    <label for="signup-username">Username</label>
+                    <input id="signup-username" type="username"  value="teststudent"/>
+                  </div>
+                  <div class="input-block" id="signupfullnamediv">
+                    <label for="signup-fullname">Full Name</label>
+                    <input id="signup-fullname" type="fullname"  value="Test Teacher"/>
+                  </div>
+                  <div class="input-block">
+                    <label for="signup-password">Password</label>
+                    <input id="signup-password" type="password"  value="testemail@email.com"/>
+                  </div>
+                  <div class="input-block">
+                    <label for="signup-password-confirm"
+                      >Confirm password</label
+                    >
+                    <input
+                      id="signup-password-confirm"
+                      type="password"
+                      value="testemail@email.com"
+                    />
+                  </div>
+                </fieldset>
+                <button onclick="register()" type="button" id="signUpButton" class="custom-btn authbtns" style="opacity: 0;">Sign Up</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    
+  </body>
+
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <script>
+    w3.includeHTML();
+  </script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="https://kit.fontawesome.com/ade0b34805.js" crossorigin="anonymous"></script>
+</html>

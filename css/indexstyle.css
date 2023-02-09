@@ -1,0 +1,114 @@
+body {
+  background-image: url('../images/freshlandingpage.png');
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+#startButton{
+  background-color: #43425D;
+  border: none;
+  color: white;
+  padding: 10px 45px;
+  position: absolute;
+  top: 71.6%;
+  left: 44%;
+  font-size: 20px;
+  border-radius: 50px;
+}
+
+.introduction{
+  margin-top:0.7%;
+  text-align: center;
+  margin-bottom: 14%;
+}
+
+.introduction>p{
+  word-break:keep-all;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.objects{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.descriptions>p{
+  word-break:keep-all;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#description{
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.button--bestia {
+	font-family: Poppins, sans-serif;
+	font-size: 1.15rem;
+	background: none;
+	padding: 0;
+}
+
+.button--bestia .button__bg {
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #000000;
+	border-radius: 50px;
+	overflow: hidden;
+	transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.button--bestia:hover .button__bg {
+	transform: scale3d(1.2,1.2,1);
+}
+
+.button--bestia .button__bg::before,
+.button--bestia .button__bg::after {
+	content: '';
+	position: absolute;
+	background: #43425D;
+}
+
+.button--bestia .button__bg::before {
+	width: 110%;
+	height: 0;
+	padding-bottom: 110%;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	transform: translate3d(-50%,-50%,0) scale3d(0,0,1);
+}
+
+.button--bestia:hover .button__bg::before {
+	transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1); 
+	transform: translate3d(-50%,-50%,0) scale3d(1,1,1);
+}
+
+.button--bestia .button__bg::after {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.3s;
+  
+}
+
+.button--bestia:hover .button__bg::after {
+	opacity: 1;
+	transition-duration: 0.01s;
+	transition-delay: 0.3s;
+  
+}
+
+.button--bestia span {
+	mix-blend-mode:lighten;
+}
+
+

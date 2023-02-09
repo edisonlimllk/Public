@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/indexstyle.css" />
+    <link rel="stylesheet" href="./css/textstyles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="introduction">
+      <h5>What do we do?</h5>
+      <h1>How Can StudyBuddy Help You</h1>
+      <p>
+        StudyBuddy is a web application to help students to study better. See your modules and deadlines easily and plan ahead
+        with tasks.
+      </p>
+    </div>
+    <div class="objects">
+      <div class="row justify-content-evenly titles">
+        <div class="col-3" style="text-align: center">
+          <h2>Fully Customizable</h2>
+        </div>
+        <div class="col-3" style="text-align: center">
+          <h2>Easy To Learn</h2>
+        </div>
+        <div class="col-3" style="text-align: center">
+          <h2>Teacher-Supported</h2>
+        </div>
+      </div>
+      <div class="row justify-content-evenly" id="description">
+        <div class="col descriptions">
+          <p>
+            Create any module you want and customise it however you like, make
+            your own tasks and sub-deadlines to control how you want to study.
+          </p>
+        </div>
+        <div class="col descriptions">
+          <p>
+            This website is supposed to supplement your learning not add on to
+            what you need to learn, hence our site was designed with
+            learnability in mind.
+          </p>
+        </div>
+        <div class="col descriptions">
+          <p>This site can also be used for teachers and students</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="button button--bestia" id="startButton" onclick="goAuth()">
+      <div class="button__bg"></div>
+      <span>Try Now!</span>
+    </button>
+  </body>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <script>
+    w3.includeHTML();
+  </script>
+  <div w3-include-html="./auth.html"></div>
+  <script src="./js/index.js"></script>
+  <script src="./js/app.js"></script>
+</html>

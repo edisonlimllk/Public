@@ -1,0 +1,424 @@
+/* welcome message */
+#welcome {
+    color: white;
+    position: relative;
+    margin-left: 34%;
+    margin-top: 20px;
+}
+/* title message */
+#title {
+    color: white;
+    position: relative;
+    margin-left: 37%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* navbar */
+nav {
+  margin: 27px auto 0;
+  position: relative;
+  width: 310px;
+  height: 50px;
+  background-color: #34495e;
+  border-radius: 8px;
+  font-size: 0;
+}
+nav a {
+  line-height: 50px;
+  height: 100%;
+  font-size: 15px;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+nav .animation {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  z-index: 0;
+  transition: all 0.5s ease 0s;
+  border-radius: 8px;
+}
+a:nth-child(1) {
+  width: 100px;
+}
+a:nth-child(2) {
+  width: 110px;
+}
+a:nth-child(3) {
+  width: 100px;
+}
+
+nav .start-home,
+a:nth-child(1):hover ~ .animation {
+  width: 100px;
+  left: 0;
+  background-color: #1abc9c;
+}
+nav .start-about,
+a:nth-child(2):hover ~ .animation {
+  width: 110px;
+  left: 100px;
+  background-color: #3498db;
+}
+nav .start-blog,
+a:nth-child(3):hover ~ .animation {
+  width: 100px;
+  left: 210px;
+  background-color: #e74c3c;
+}
+
+/* table */
+
+a:hover::after {
+  width: 34.93%;
+  margin-left: 57.89%;
+}
+body {
+  position: relative;
+}
+a {
+  color: rgb(112, 112, 112);
+}
+h1 {
+  font-size: 60px;
+}
+h3 {
+  font-size: 30px;
+}
+.table-wrapper body {
+  font-family: SF Pro Display;
+  -webkit-font-smoothing: antialiased;
+}
+/* Table Styles */
+
+.table-wrapper {
+  margin: 10px 100px 100px;
+  box-shadow: 0px 5px 50px rgba(223, 223, 226, 0.3);
+}
+
+.fl-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  background-color: #e1ba92;
+}
+
+.fl-table td,
+.fl-table th {
+  text-align: center;
+  font-size: 30px;
+  padding: 8px;
+}
+
+.fl-table td:first-child {
+  border-right: 2px solid #a37b51;
+  font-size: 30px;
+}
+.fl-table tr:nth-child(even) {
+  background: #d6a16a;
+}
+
+.fl-table tr:nth-child(odd) td:last-child #box-inner {
+  background: #e1ba92;
+}
+
+.fl-table tr:nth-child(even) td:last-child #box-inner {
+  background: #d6a16a;
+}
+
+/* button */
+
+#app-cover {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 80%;
+  overflow: hidden;
+}
+
+/* make the checkbox invisible */
+#checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 3;
+}
+
+/* the button as a whole? */
+#bin-icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  width: 42px;
+  height: 58px;
+  margin: -29px auto 0 auto;
+  border-radius: 20%;
+  z-index: 2;
+}
+
+/* the lid handle */
+#lid {
+  position: relative;
+  width: 50px;
+  height: 4px;
+  left: -4px;
+  border-radius: 4px;
+}
+
+/* the lid */
+#lid:before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: 0;
+  left: 0;
+  width: 10px;
+  height: 6px;
+  margin: 0 auto;
+  border-radius: 2px 2px 0 0;
+}
+
+/* base of bin */
+#box {
+  position: relative;
+  height: 52px;
+  margin-top: 2px;
+  border-radius: 0 0 8px 8px;
+}
+
+/* inside of bin */
+#box-inner {
+  position: relative;
+  top: 4px;
+  width: 34px;
+  height: 44px;
+  margin: 0 auto;
+  background-color: #d6a16a;
+  border-radius: 0 0 5px 5px;
+}
+
+#bin-lines {
+  position: relative;
+  top: 7px;
+  margin: 0 auto;
+}
+
+#bin-lines,
+#bin-lines:before,
+#bin-lines:after {
+  width: 3px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+#bin-lines:before,
+#bin-lines:after {
+  content: "";
+  position: absolute;
+}
+
+#bin-lines:before {
+  left: -10px;
+}
+
+#bin-lines:after {
+  left: 10px;
+}
+
+#lid,
+#lid:before,
+#box,
+#bin-lines,
+#bin-lines:before,
+#bin-lines:after {
+  background-color: #f44336;
+  transition: 0.2s ease background-color;
+}
+
+#checkbox:checked ~ #bin-icon #lid,
+#checkbox:checked ~ #bin-icon #lid:before,
+#checkbox:checked ~ #bin-icon #box,
+#checkbox:checked ~ #bin-icon #box-inner {
+  background-color: #ff0000;
+}
+
+.fl-table tr:nth-child(even) td:last-child
+#checkbox:checked ~ #bin-icon #bin-lines,
+.fl-table tr:nth-child(even) td:last-child
+#checkbox:checked ~ #bin-icon #bin-lines:before,
+.fl-table tr:nth-child(even) td:last-child
+#checkbox:checked ~ #bin-icon #bin-lines:after {
+  background-color: #d6a16a;
+}
+
+.fl-table tr:nth-child(odd) td:last-child
+#checkbox:checked ~ #bin-icon #bin-lines,
+.fl-table tr:nth-child(odd) td:last-child
+#checkbox:checked ~ #bin-icon #bin-lines:before,
+.fl-table tr:nth-child(odd) td:last-child
+#checkbox:checked ~ #bin-icon #bin-lines:after {
+  background-color: #e1ba92;
+}
+
+#checkbox:checked + #bin-icon #box {
+  animation: shake 0.2s ease 0.1s;
+}
+
+#checkbox:checked + #bin-icon #lid {
+  animation: lift-up 0.8s ease 0.1s, shake_u 0.8s ease 0.1s,
+    shake_l 0.2s ease 0.8s;
+}
+
+#checkbox:checked ~ #layer {
+  width: 226px;
+  height: 226px;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotateZ(3deg);
+  }
+  25% {
+    transform: rotateZ(0);
+  }
+  75% {
+    transform: rotateZ(-3deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+@keyframes lift-up {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -10px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes shake_u {
+  0% {
+    transform: rotateZ(0);
+  }
+  25% {
+    transform: rotateZ(-15deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  75% {
+    transform: rotateZ(15deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+@keyframes shake_l {
+  0% {
+    transform: rotateZ(0);
+  }
+  80% {
+    transform: rotateZ(3deg);
+  }
+  90% {
+    transform: rotateZ(-3deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+.td{
+  margin-top: 15px;
+}
+
+* {
+    outline: none;
+  }
+  .tb {
+    display: table;
+    width: 100%;
+  }
+  
+    input,
+    button {
+      color: #fff;
+      border: 0;
+      background-color: transparent;
+    }
+  
+  #cover {
+    position: relative;
+    padding: 35px;
+    margin: 40px auto 0 auto;
+    background-color: #1abc9c;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px #1abc9c, 0 0 0 20px #ffffffeb;
+    transform: scale(0.6);
+    height: auto;
+    width: auto;
+  }
+  
+  input[type="text"] {  
+    height: 50px;
+    font-size: 50px;
+    line-height: 1;
+  }
+  
+  input[type="text"]::placeholder {
+    color: #c8d0ce;
+  }
+  
+  #addSchoolButton{
+    height: 85px;
+    width: 200px;
+    font-size: 50px;
+    background-color: #114ec9a0;
+    border-radius: 13px;
+    box-shadow: 0 4px 4px #114ec9a0, 0 0 0 9px #ffffffeb;
+    -webkit-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -ms-transition: all 0.15s linear;
+    -kthtml-transition: all 0.15s linear;
+    transition: all 0.15s linear;
+  }
+
+
+  .restaurant-content {
+    /* display: block; */
+    /* position: absolute; */
+    /* max-width: 600px; */
+    z-index: 2;
+    /* bottom: 10px; */
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: bottom
+  }
+
+  @keyframes growDown {
+    0% {
+      transform: scaleY(0)
+    }
+    80% {
+      transform: scaleY(1.1)
+    }
+    100% {
+      transform: scaleY(1)
+    }
+  }
