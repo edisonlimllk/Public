@@ -16,7 +16,7 @@ let routes = {
     "https://3ao9jhcio6.execute-api.us-east-1.amazonaws.com/api/teacher",
   adminregister:
     "https://3ao9jhcio6.execute-api.us-east-1.amazonaws.com/api/admin",
-  baseurl: "https://3ao9jhcio6.execute-api.us-east-1.amazonaws.com/api/",
+  baseurl: "https://3ao9jhcio6.execute-api.us-east-1.amazonaws.com/api/"
 };
 
 async function getAllSchools() {
@@ -67,5 +67,44 @@ async function decodeToken(token) {
   } catch (e) {
     console.log(e);
     alert("Error. Unable to get token.");
+  }
+}
+
+async function getUser(token) {
+  console.log(sessionStorage.getItem("user"));
+  try {
+    const result = await fetch(
+      "https://3ao9jhcio6.execute-api.us-east-1.amazonaws.com/api/user",
+      {
+        method: "GET",
+        headers: {
+          token: token,
+        },
+      }
+    ).then((response) => response.json());
+    for (let key in result.Items[0]) {
+      if (result.Items[0].hasOwnProperty(key)) {
+        sessionStorage.setItem(key, result.Items[0][key]);
+      }
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+    alert("Error. Unable to get token.");
+  }
+}
+
+async function getAssessmentsByModule(id){
+  try {
+    const result = await fetch(
+      routes["baseurl"] + "assessments/" + id,
+      {
+        method: "GET"
+      }
+    ).then((response) => response.json());
+    return result;
+  } catch (e) {
+    console.log(e);
+    alert("Error. Unable to get assessments.");
   }
 }
