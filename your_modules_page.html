@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="./student_page.html"
+              <a class="nav-link" aria-current="page" href="./student_page.html" id="exploreModulesNavBarItem"
                 >Explore Modules</a
               >
             </li>
@@ -59,6 +59,9 @@
       </div>
     </nav>
     <h2 style="margin-left: 43%; margin-top: 2%">Your Modules</h2>
+    <div class="d-grid gap-2">
+      <button onclick="createModule()" class="btn btn-lg btn-primary col-8 mx-auto" style="margin-bottom: 2%;margin-top: 1%;" type="button">Create Module</button>
+    </div>
     <div
       id="modulesGrid"
       class="row row-cols-1 row-cols-md-3 g-4"

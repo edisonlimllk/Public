@@ -50,14 +50,14 @@ async function getProfilePicture(email) {
       }).then((response) => response.json());
       if (result.body){
         picture = result.body;
-        $("#output").attr("src", "data:image/jpeg;base64,"+picture);
+        return $("#output").attr("src", "data:image/jpeg;base64,"+picture);
       }
       else{
-        alert(result);
+        return console.log(result);
       }
     } catch (e) {
       console.log(e);
-      alert("Error. Unable to get picture.");
+      return console.log("Error. Unable to get picture.");
     }
   }
   

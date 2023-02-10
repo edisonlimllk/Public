@@ -1,47 +1,107 @@
+if (sessionStorage.getItem('role') === 'teacher') {
+  $('#placeholder').text("No modules yet, create one now!")
+  $('#exploreModulesNavBarItem').attr('href','./teacher_page.html')
+}
+
+function createModule(){
+  window.location.replace('./create_module_page.html');
+}
+
 var moduleList;
 async function yourModules() {
   console.log("Welcome, reached get your modules!");
-  try {
-    const result = await fetch(
-      routes["baseurl"] + "modules/email/" + sessionStorage.getItem("email"),
-      {
-        method: "GET",
+  if (sessionStorage.getItem('role') === 'student'){
+    try {
+      const result = await fetch(
+        routes["baseurl"] + "modules/email/" + sessionStorage.getItem("email"),
+        {
+          method: "GET",
+        }
+      ).then((response) => response.json());
+      let html = "";
+      console.log(result);
+      moduleList = result;
+      for (const i in result) {
+        html +=
+          "<div class='col'>" +
+          "<div class='card'>" +
+          "<h5 class='card-header'>" +
+          result[i].school +
+          " - " +
+          result[i].field +
+          "</h5>" +
+          "<img src='./images/brightauthimage.png' style='width:100%;height:180px;object-fit:cover' class='card-img-top' alt='...'></img>"+
+          " <div class='card-body'>" +
+          "<h5 class='card-title'>" +
+          result[i].module_name +
+          "</h5>" +
+          "<p class='card-text'>" +
+          result[i].credits_given +
+          " credits" +
+          "</p>" +
+          "<a onclick='viewDetails(" +
+          i +
+          ")' class='btn btn-primary'>" +
+          "View Details" +
+          " </a>" +
+          "   </div>" +
+          "   </div>" +
+          "   </div>";
+        }
+        document.getElementById("modulesGrid").innerHTML = html;
+        $("#placeholder").css("display", "none");
+      } catch (e) {
+        console.log(e);
+        return console.log("Error. Unable to get your modules.");
       }
-    ).then((response) => response.json());
-    let html = "";
-    console.log(result);
-    moduleList = result;
-    for (const i in result) {
-      html +=
-        "<div class='col'>" +
-        "<div class='card'>" +
-        "<h5 class='card-header'>" +
-        result[i].school +
-        " - " +
-        result[i].field +
-        "</h5>" +
-        " <div class='card-body'>" +
-        "<h5 class='card-title'>" +
-        result[i].module_name +
-        "</h5>" +
-        "<p class='card-text'>" +
-        result[i].credits_given +
-        " credits" +
-        "</p>" +
-        "<a onclick='viewDetails(" +
-        i +
-        ")' class='btn btn-primary'>" +
-        "View Details" +
-        " </a>" +
-        "   </div>" +
-        "   </div>" +
-        "   </div>";
     }
-    document.getElementById("modulesGrid").innerHTML = html;
-    $("#placeholder").css("display", "none");
-  } catch (e) {
-    console.log(e);
-    alert("Error. Unable to get your modules.");
+    else if (sessionStorage.getItem("role") == "teacher"){
+      try {
+        const result = await fetch(
+          routes["baseurl"] + "modules/" + sessionStorage.getItem("full_name"),
+          {
+            method: "GET",
+          }
+          ).then((response) => response.json());
+          let html = "";
+          console.log(result);
+          moduleList = result;
+          for (const i in result) {
+            html +=
+            "<div class='col'>" +
+            "<div class='card'>" +
+            "<h5 class='card-header'>" +
+            result[i].school +
+            " - " +
+            result[i].field +
+            "</h5>" +
+            "<img src='./images/brightauthimage.png' style='width:100%;height:180px;object-fit:cover' class='card-img-top' alt='...'></img>"+
+            " <div class='card-body'>" +
+            "<h5 class='card-title'>" +
+            result[i].module_name +
+            "</h5>" +
+          "<p class='card-text'>" +
+          result[i].credits_given +
+          " credits" +
+          "</p>" +
+          "<a onclick='viewDetails(" +
+          i +
+          ")' class='btn btn-primary'>" +
+          "View Details" +
+          " </a>" +
+          "   </div>" +
+          "   </div>" +
+          "   </div>";
+      }
+      document.getElementById("modulesGrid").innerHTML = html;
+      $("#placeholder").css("display", "none");
+    } catch (e) {
+      console.log(e);
+      return console.log("Error. Unable to get your modules.");
+    }
+  }
+  else{
+    console.log("double check ur role");
   }
 }
 

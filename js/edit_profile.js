@@ -140,10 +140,10 @@ async function updateProfilePicture() {
       if (result.message == "Successfully set profile picture") {
         return alert("Successfully set profile picture");
       }
-      return alert("Unable to get picture.");
+      return console.log("Unable to get picture.");
     } catch (e) {
       console.log(e);
-      alert("Error. Unable to get picture.");
+      return console.log("Error. Unable to get picture.");
     }
   }
 }

@@ -30,10 +30,12 @@ async function displayModules(role) {
       }
       moduleList = result;
       html +=
+        "<div class='col'>" +
         "<div class='card'>" +
         "<div class='card-header'>" +
         result[i].school +
         "</div>" +
+        "<img src='./images/brightauthimage.png' style='width:100%;height:180px;object-fit:cover' class='card-img-top' alt='...'></img>"+
         "<div class='card-body'>" +
         "<h5 class='card-title'>" +
         result[i].module_name +
@@ -42,7 +44,7 @@ async function displayModules(role) {
         result[i].field +
         "</p>";
       html += buttonhtml;
-      html += "</div>" + "</div>";
+      html += "</div>" + "</div>"+"</div>";
       document.getElementById("modules").innerHTML = html;
     }
     return console.log(result);
@@ -65,14 +67,14 @@ async function enrol(i) {
         try {
           await startStepFunction(assessment);
         } catch (error) {
-          alert(error);
+          return console.log(error);
         }
       }
     } catch (error) {
-      alert(error);
+      return console.log(error);
     }
   } catch (error) {
-    alert(error);
+    return console.log(error);
   }
   window.location.reload();
 }
