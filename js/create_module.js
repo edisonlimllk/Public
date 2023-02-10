@@ -51,41 +51,40 @@ async function createModule() {
   };
   console.log(jsonData);
   console.log("Welcome, reached create module!");
-//   try {
-//     const result = await fetch(routes["baseurl"] + "module", {
-//       method: "POST",
-//       headers: {
-//         token: sessionStorage.getItem("token"),
-//       },
-//       body: JSON.stringify(jsonData),
-//     }).then((response) => response.json());
-//     console.log(result);
-    // if (result.insertId) {
-    //   jsonData = {
-    //     password: sessionStorage.getItem("password"),
-    //     username:  sessionStorage.getItem("username"),
-    //     school_name:  sessionStorage.getItem("school_name"),
-    //     modules:  sessionStorage.getItem("modules")+","+result.insertId,
-    //     full_name:  sessionStorage.getItem("full_name"),
-    //   };
-    //   try {
-    //     const result = await fetch(routes["baseurl"] + "teacher", {
-    //       method: "PUT",
-    //       headers:{
-    //         token: sessionStorage.getItem('token'),
-    //       },
-    //       body: JSON.stringify(jsonData)
-    //     }).then((response) => response.json());
-    //     return console.log(result);
-    //     // return window.location.replace('./your_modules_page.html');
-    //   } catch (e) {
-    //     console.log(e);
-    //     return alert("Error. Unable to update teacher.");
-    //   }
-    // }
-    // return result;
-//   } catch (e) {
-//     return console.log(e);
-//     // alert("Error. Unable to create module.");
-//   }
+  try {
+    const result = await fetch(routes["baseurl"] + "module", {
+      method: "POST",
+      headers: {
+        token: sessionStorage.getItem("token"),
+      },
+      body: JSON.stringify(jsonData),
+    }).then((response) => response.json());
+    console.log(result);
+    if (result.insertId) {
+      jsonData = {
+        password: sessionStorage.getItem("password"),
+        username:  sessionStorage.getItem("username"),
+        school_name:  sessionStorage.getItem("school_name"),
+        modules:  sessionStorage.getItem("modules")+","+result.insertId,
+        full_name:  sessionStorage.getItem("full_name"),
+      };
+      try {
+        const result = await fetch(routes["baseurl"] + "teacher", {
+          method: "PUT",
+          headers:{
+            token: sessionStorage.getItem('token'),
+          },
+          body: JSON.stringify(jsonData)
+        }).then((response) => response.json());
+        return console.log(result);
+        return window.location.replace('./your_modules_page.html');
+      } catch (e) {
+        console.log(e);
+        return alert("Error. Unable to update teacher.");
+      }
+    }
+    return result;
+  } catch (e) {
+    return console.log(e);
+  }
 }
