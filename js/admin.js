@@ -110,7 +110,7 @@ async function deleteThing(index) {
   }
 }
 
-function logout() {
+function adminLogout() {
   $("#title").text("Logging out...");
   $("#animation").removeClass("start-about");
   $("#animation").addClass("start-blog");

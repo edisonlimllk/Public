@@ -2,8 +2,8 @@ var moduleList = [];
 var token = sessionStorage.getItem("token");
 var student;
 
-async function displayModules() {
-  student = sessionStorage.getItem("user");
+async function displayModules(role) {
+  getUser(token);
   try {
     const result = await fetch(routes["baseurl"] + "modules", {
       method: "GET",
@@ -11,7 +11,10 @@ async function displayModules() {
     let html = "";
     let buttonhtml = "";
     for (const i in result) {
-      if (
+      if (role == "teacher") {
+        buttonhtml = "";
+      }
+      else if (
         result[i].students &&
         result[i].students.includes(sessionStorage.getItem("email"))
       ) {
@@ -45,34 +48,33 @@ async function displayModules() {
     return console.log(result);
   } catch (e) {
     console.log(e);
-    alert("Error. Unable to get modules.");
   }
 }
 
 async function enrol(i) {
-  // console.log(moduleList[i]);
-  //   try {
-  //     await addStudentToModule(i);
-  //     try {
-  //         await addModuleToStudent(i);
-  assessments = await getAssessmentsByModule(moduleList[i].id).then(
-    (response) => response
-  );
-  console.log(assessments);
-  for (const assessment of assessments) {
+  console.log(moduleList[i]);
+  try {
+    await addStudentToModule(i);
     try {
-        await startStepFunction(assessment);
+      await addModuleToStudent(i);
+      assessments = await getAssessmentsByModule(moduleList[i].id).then(
+        (response) => response
+      );
+      console.log(assessments);
+      for (const assessment of assessments) {
+        try {
+          await startStepFunction(assessment);
+        } catch (error) {
+          alert(error);
+        }
+      }
     } catch (error) {
-        alert(error);
+      alert(error);
     }
+  } catch (error) {
+    alert(error);
   }
-  // } catch (error) {
-  //     alert(error);
-  // }
-  // } catch (error) {
-  //     alert(error);
-  // }
-  // window.location.reload();
+  window.location.reload();
 }
 
 async function addStudentToModule(i) {
@@ -134,28 +136,21 @@ async function addModuleToStudent(i) {
 }
 
 async function startStepFunction(assessment) {
-    // console.log(assessment);
-    date = new Date(assessment.deadline);
-    // date.setTime(date.getTime() +(8 * 60 * 60 * 1000));
-    console.log(date);
-    date.toISOString();
-    //   let jsonData = {
-    //     email: sessionStorage.getItem("email"),
-    //     date: assessment.deadline,
-    //     assignmentName: assessment.assessment_name,
-    //     weightage: assessment.weightage
-    //   };
-    // try {
-    //   const result = await fetch(
-    //     routes["baseurl"] + "initstepfunction",
-    //     {
-    //       method: "POST",
-    //       body: JSON.stringify(jsonData),
-    //     }
-    //   ).then((response) => response.json());
-    //   return console.log(result);
-    // } catch (e) {
-    //   console.log(e);
-    //   alert("Error. Unable to start step function.");
-    // }
+  date = new Date(assessment.deadline);
+  let jsonData = {
+    email: sessionStorage.getItem("email"),
+    date: date,
+    assignmentName: assessment.assessment_name,
+    weightage: assessment.weightage,
+  };
+  try {
+    const result = await fetch(routes["baseurl"] + "initstepfunction", {
+      method: "POST",
+      body: JSON.stringify(jsonData),
+    }).then((response) => response.json());
+    return console.log(result);
+  } catch (e) {
+    console.log(e);
+    alert("Error. Unable to start step function.");
+  }
 }

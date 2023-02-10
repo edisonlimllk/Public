@@ -53,6 +53,7 @@ async function changePassword(){
     ).then((response) => response.json());
     if (result) {
       console.log(result);
+      return window.location.replace('./profile_page.html')
     }
     return alert("Unable to change password");
   } catch (e) {
@@ -112,6 +113,7 @@ async function updateProfile() {
     ).then((response) => response.json());
     if (result) {
       console.log(result);
+      return window.location.replace('./profile_page.html');
     }
     return alert("Unable to set profile details");
   } catch (e) {

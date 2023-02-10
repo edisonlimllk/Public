@@ -66,7 +66,6 @@ async function decodeToken(token) {
     return result;
   } catch (e) {
     console.log(e);
-    alert("Error. Unable to get token.");
   }
 }
 
@@ -90,7 +89,6 @@ async function getUser(token) {
     return result;
   } catch (e) {
     console.log(e);
-    alert("Error. Unable to get token.");
   }
 }
 
@@ -107,4 +105,9 @@ async function getAssessmentsByModule(id){
     console.log(e);
     alert("Error. Unable to get assessments.");
   }
+}
+
+function logout() {
+  sessionStorage.clear();
+  window.location.replace("./index.html");
 }

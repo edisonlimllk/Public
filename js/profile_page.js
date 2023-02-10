@@ -1,4 +1,17 @@
+if (sessionStorage.getItem('role') == 'student') {
+  $("#fullNameField").css('display', 'none');
+  $("#exploreModulesNavItem").attr('href', './student_page.html');
+}
+if (sessionStorage.getItem('role') == 'teacher') {
+  $("#exploreModulesNavItem").attr('href', './teacher_page.html');
+}
+
 async function loadProfileData(edit) {
+  if (sessionStorage.getItem("role")=="student") {
+    $("#fullName1").text(sessionStorage.getItem("username"))
+  }else{
+    $("#fullName1").text(sessionStorage.getItem("full_name"))
+  }
   try {
     const result = await fetch(routes["baseurl"] + "user", {
       method: "GET",
@@ -7,21 +20,23 @@ async function loadProfileData(edit) {
       },
     }).then((response) => response.json());
     console.log(result.Items[0]);
+    if (sessionStorage.getItem('role') == 'teacher') {
     getProfilePicture(result.Items[0].email);
+    }
     for (let key in result.Items[0]) {
       if (result.Items[0].hasOwnProperty(key)) {
         sessionStorage.setItem(key, result.Items[0][key]);
       }
     }
     if (edit == 'edit') {
-      displayEditData()
+      return displayEditData()
     }
     else{
-      displayData();
+      return displayData();
     }
   } catch (e) {
-    console.log(e);
-    alert("Error. Unable to login.");
+    return console.log(e);
+     
   }
 }
 
@@ -49,7 +64,6 @@ async function getProfilePicture(email) {
 }
 
 function displayData() {
-  $("#fullName1").text(sessionStorage.getItem("full_name"))
   $("#userType").text(sessionStorage.getItem("role"))
   $("#fullName2").text(sessionStorage.getItem("full_name"))
   $("#username").text(sessionStorage.getItem("username"))
@@ -58,9 +72,9 @@ function displayData() {
 }
 function displayEditData() {
   document.querySelector('label[for="dropdown"]').textContent = sessionStorage.getItem("school_name");
-  $("#fullName1").text(sessionStorage.getItem("full_name"))
   $("#userType").text(sessionStorage.getItem("role"))
   $("#fullName2").attr('placeholder', sessionStorage.getItem("full_name"))
   $("#username").attr('placeholder', sessionStorage.getItem("username"))
   $("#email").attr('placeholder', sessionStorage.getItem("email"))
 }
+
