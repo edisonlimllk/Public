@@ -2,6 +2,10 @@ if (sessionStorage.getItem('role') === 'teacher') {
   $('#placeholder').text("No modules yet, create one now!")
   $('#exploreModulesNavBarItem').attr('href','./teacher_page.html')
 }
+if (sessionStorage.getItem('role') != 'teacher') {
+  $('#createModule').css('display','none');
+}
+
 
 function createModule(){
   window.location.replace('./create_module_page.html');
@@ -111,6 +115,13 @@ async function viewDetails(i) {
   if (moduleList[i].info) {
     info = moduleList[i].info;
   }
+  if (moduleList[i].students) {
+    console.log(moduleList[i].students);
+    studentsEnrolled = moduleList[i].students.split(',').length
+  }
+  else{
+    studentsEnrolled = 0
+  }
   assessments = await getAssessmentsByModule(moduleList[i].id).then((response) => response);
   for (const i in assessments) {
     
@@ -148,7 +159,7 @@ async function viewDetails(i) {
     moduleList[i].field +
     "</h4>" +
     "<h5 class='card-text-end'style='margin-bottom: 1%;margin-left:80%;color:grey'>Students Enrolled: " +
-    moduleList[i].students.split(',').length 
+     studentsEnrolled
     "</h5>" +
     "</div>" +
     " </div>";

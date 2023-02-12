@@ -31,7 +31,6 @@ function selectSchool(school_name) {
 function selectField(field_name) {
   document.getElementById("fieldname").textContent = field_name;
 }
-
 async function createModule() {
   if (
     $("#moduleName").val() == "" ||
@@ -76,7 +75,7 @@ async function createModule() {
           },
           body: JSON.stringify(jsonData)
         }).then((response) => response.json());
-        return console.log(result);
+        // return console.log(result);
         return window.location.replace('./your_modules_page.html');
       } catch (e) {
         console.log(e);

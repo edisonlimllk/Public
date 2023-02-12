@@ -65,7 +65,7 @@ async function addThing() {
       return window.location.reload();
     }
 
-    return alert("Unable to add");
+    return console.log("Unable to add");
   } catch (e) {
     console.log(e);
     alert("Error. Unable to add.");
@@ -138,14 +138,16 @@ async function listFields() {
   console.log(fields.Items);
   let html = "";
   let animation = 0;
-  for (let i = 1; i < fields.Items.length; i++) {
+  for (let i = 0; i < fields.Items.length; i++) {
+    console.log(fields.Items[i].field_name);
     animation += 0.1;
+    index = i+1;
     html +=
       "<tr class='restaurant-content' style='animation-delay: " +
       animation +
       "s;'>" +
       "<td>" +
-      i +
+      index +
       "</td>" +
       "<td id='field" +
       i +
@@ -177,14 +179,15 @@ async function listSchools() {
   const schools = await getAllSchools().then((result) => result);
   let html = "";
   let animation = 0;
-  for (let i = 1; i < schools.Items.length; i++) {
+  for (let i = 0; i < schools.Items.length; i++) {
+    index = i+1;
     animation += 0.1;
     html +=
       "<tr class='restaurant-content' style='animation-delay: " +
       animation +
       "s;'>" +
       "<td>" +
-      i +
+      index +
       "</td>" +
       "<td id='school" +
       i +

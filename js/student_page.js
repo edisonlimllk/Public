@@ -84,8 +84,11 @@ async function addStudentToModule(i) {
   let jsonData = moduleList[i];
   let students = jsonData.students;
   let studentEmail = sessionStorage.getItem("email");
-  if (students.includes(studentEmail)) {
-    return alert("You are already enrolled here.");
+  if(students){
+    if (students.includes(studentEmail)) {
+      return alert("You are already enrolled here.");
+    }
+
   }
   jsonData.students = jsonData.students + "," + studentEmail;
   try {
