@@ -9,24 +9,24 @@ function selectUserType(id, event) {
   }
   $("#" + id).addClass("clicked");
   $("#" + id).css("boxShadow", "0 0px 0px 0");
-  
+
   userType = id.toLowerCase().slice(6);
   event.preventDefault();
 }
 
 // $("#forgotPasswordLink").
 
-$("#signUpAdmin").click(function(){
+$("#signUpAdmin").click(function () {
   $("#signup-sec-center").hide();
   $("#signupfullnamediv").hide();
   $("#signupusernamediv").hide();
 });
-$("#signUpTeacher").click(function(){
+$("#signUpTeacher").click(function () {
   $("#signup-sec-center").show();
   $("#signupfullnamediv").show();
   $("#signupusernamediv").show();
 });
-$("#signUpStudent").click(function(){
+$("#signUpStudent").click(function () {
   $("#signupfullnamediv").hide();
   $("#signup-sec-center").show();
   $("#signupusernamediv").show();
@@ -63,53 +63,39 @@ function dropDownClicked(event) {
 async function register() {
   var response = "";
   let jsonData = {};
-  if (userType=="student") {
+  if (userType == "student") {
     jsonData = {
       email: $("#signup-email").val(),
       password: $("#signup-password").val(),
       username: $("#signup-username").val(),
-      modules: '',
-      school_name: document.querySelector('label[for="dropdown"]').textContent
+      modules: "",
+      school_name: document.querySelector('label[for="dropdown"]').textContent,
     };
   }
-  if (userType=="teacher") {
+  if (userType == "teacher") {
     jsonData = {
       email: $("#signup-email").val(),
       password: $("#signup-password").val(),
       username: $("#signup-username").val(),
       full_name: $("#signup-fullname").val(),
-      modules: '',
-      school_name: document.querySelector('label[for="dropdown"]').textContent
+      modules: "",
+      school_name: document.querySelector('label[for="dropdown"]').textContent,
     };
   }
-  if (userType=="admin") {
+  if (userType == "admin") {
     jsonData = {
       email: $("#signup-email").val(),
-      password: $("#signup-password").val()
+      password: $("#signup-password").val(),
     };
   }
-  
-  if (
-    userType == "student" &&
-    jsonData.username == "" ||
-    jsonData.school_name != "School"
-  ) {
-    alert("All fields are required!");
-    return;
+  if (userType == "student") {
+    if (jsonData.username == "" || jsonData.school_name == "School") {
+      alert("All fields are required!");
+      return;
+    }
   }
-  if (
-    userType == "admin" &&
-    jsonData.username == "" ||
-    jsonData.school_name != "School" ||
-    jsonData.full_name == ""
-  ) {
-    alert("All fields are required!");
-    return;
-  }
-  if (
-    jsonData.password == "" ||
-    jsonData.email == ""
-  ) {
+
+  if (jsonData.password == "" || jsonData.email == "") {
     alert("All fields are required!");
     return;
   }
@@ -123,7 +109,8 @@ async function register() {
       method: "POST",
       body: JSON.stringify(jsonData),
     }).then((response) => response.json());
-    if(result.message=="user added"){
+    console.log(result);
+    if (result.message == "user added") {
       alert("User added successfully!");
       return;
     }
@@ -155,7 +142,7 @@ async function getSchools() {
     }
     document.getElementById("schoolDropDown").innerHTML = html;
   } catch (e) {
-    console.log(e); 
+    console.log(e);
     alert("Error. Unable to get schools.");
   }
 }
@@ -194,7 +181,7 @@ async function auth() {
         }
       }
       sessionStorage.setItem("token", result.token);
-      window.location.replace("./"+userType+"_page.html");
+      window.location.replace("./" + userType + "_page.html");
     }
     if (result.message) {
       console.log(result.message);
